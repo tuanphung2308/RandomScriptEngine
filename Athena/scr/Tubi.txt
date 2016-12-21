@@ -1,9 +1,9 @@
 //v179.1
 //Instant Drop created by ngnam87(thanks NORBIN)
-define(Instant_Drop1,00B5ABF4)//DC ? ? ? ? ? 83 C4 ? E9 ? ? ? ? DD
-define(Instant_Drop2,00B5AC02)//fld below
-define(RLA,008AE349)//81 ? ? ? 00 00 0F 8D ? ? 00 00 85 ? 0F 84 [1st result]
-define(TUB,01E7B5D0)//FUNCTION START (mov eax,[esp+04]): 8D 8E ? ? 00 00 E8 ? ? ? ? E8 ? ? ? ? 50
+define(Instant_Drop1,00B5AC84)//DC ? ? ? ? ? 83 C4 ? E9 ? ? ? ? DD
+define(Instant_Drop2,00B5AC92)//fld below
+define(RLA,008AE369)//81 ? ? ? 00 00 0F 8D ? ? 00 00 85 ? 0F 84 [1st result]
+define(TUB,01E7FDC0)//FUNCTION START (mov eax,[esp+04]): 8D 8E ? ? 00 00 E8 ? ? ? ? E8 ? ? ? ? 50
 
 [Enable]
 alloc(Tubi,64)

@@ -9,13 +9,13 @@ label(return_normal)
 delay_time:
 dd #0
 
-00B5D580:
+00B5D610:
 jmp pet_teleport_hook
 pet_teleport_return:
 
 pet_teleport_hook:
 inc [delay_time]
-cmp [delay_time], #arg1
+cmp [delay_time], #150
 jne return_normal
 mov [delay_time], #0
 push esi
@@ -35,7 +35,7 @@ push [esi+04]
 push [esi]
 push 00
 mov ecx,eax
-call 01B67600 // 8B ? 24 ? 8B 41 ? 8B 40 ? 56 8D 71 ? 8B 4C 24 10
+call 01B6BDF0 // 8B ? 24 ? 8B 41 ? 8B 40 ? 56 8D 71 ? 8B 4C 24 10
 
 popad
 pop esi
@@ -47,7 +47,7 @@ mov eax,[eax]
 jmp pet_teleport_return
 
 [disable]
-00B5D580: // 8B 50 04 8B 00 ? ? 8D 4D
+00B5D610: // 8B 50 04 8B 00 ? ? 8D 4D
 mov edx,[eax+04]
 mov eax,[eax]
 

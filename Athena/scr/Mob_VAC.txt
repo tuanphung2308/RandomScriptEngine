@@ -1,6 +1,6 @@
 //v179.1
 //Mob Vac Credits to kevintjuh93 and CJ.
-define(h1,010518F0)//8B AC 24 ? ? ? ? 33 C9 83 C4 ? 83 F8 ? 0F 94 ? 33 F6 55 89 74 ? ? 89 8C ? ? ? ? ? 8B CB E8 (function start)
+define(h1,010558C4)//8B AC 24 ? ? ? ? 33 C9 83 C4 ? 83 F8 ? 0F 94 ? 33 F6 55 89 74 ? ? 89 8C ? ? ? ? ? 8B CB E8 (function start)
 
 [ENABLE]
 alloc(CMob__GenerateMovePath_Hook,64)
