@@ -16,6 +16,7 @@
 		// Token: 0x06000089 RID: 137 RVA: 0x000037A4 File Offset: 0x000019A4
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.ProcessSelect = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -36,7 +37,7 @@
             this.ProcessSelect.FormattingEnabled = true;
             this.ProcessSelect.Location = new System.Drawing.Point(12, 589);
             this.ProcessSelect.Name = "ProcessSelect";
-            this.ProcessSelect.Size = new System.Drawing.Size(542, 21);
+            this.ProcessSelect.Size = new System.Drawing.Size(532, 21);
             this.ProcessSelect.TabIndex = 15;
             this.ProcessSelect.Text = "Please Select A Process";
             this.ProcessSelect.DropDown += new System.EventHandler(this.ProcessSelect_DropDown);
@@ -49,7 +50,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(555, 582);
+            this.tabControl1.Size = new System.Drawing.Size(559, 582);
             this.tabControl1.TabIndex = 16;
             // 
             // tabPage1
@@ -58,7 +59,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(547, 556);
+            this.tabPage1.Size = new System.Drawing.Size(551, 556);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scripts";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -67,7 +68,7 @@
             // 
             this.scrPanel.Location = new System.Drawing.Point(1, 0);
             this.scrPanel.Name = "scrPanel";
-            this.scrPanel.Size = new System.Drawing.Size(550, 556);
+            this.scrPanel.Size = new System.Drawing.Size(561, 556);
             this.scrPanel.TabIndex = 15;
             // 
             // tabPage2
@@ -80,7 +81,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(547, 556);
+            this.tabPage2.Size = new System.Drawing.Size(551, 556);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Item filter";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -143,9 +144,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(566, 622);
+            this.ClientSize = new System.Drawing.Size(554, 622);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ProcessSelect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Athena Trainer";
             this.Load += new System.EventHandler(this.Form1_Load);
