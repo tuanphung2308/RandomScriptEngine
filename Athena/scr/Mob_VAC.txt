@@ -1,0 +1,36 @@
+//v179.1
+//Mob Vac Credits to kevintjuh93 and CJ.
+define(h1,010518F0)//8B AC 24 ? ? ? ? 33 C9 83 C4 ? 83 F8 ? 0F 94 ? 33 F6 55 89 74 ? ? 89 8C ? ? ? ? ? 8B CB E8 (function start)
+
+[ENABLE]
+alloc(CMob__GenerateMovePath_Hook,64)
+label(Return)
+
+CMob__GenerateMovePath_Hook:
+push eax
+mov [esp+C+04],#07 // nAction, 9 for freeze Vellum
+mov [esp+C+08],#01 // bLeft
+mov [esp+C+10],#00 // bChase
+mov [esp+C+14],#23 // nMoveType
+mov [esp+C+18],#arg1 // nMoveEndingX
+mov [esp+C+1C],#arg2 // nMoveEndingY
+mov [esp+C+20],#00 // bMoveLeft
+mov [esp+C+24],#00 // bRiseByToss
+mov [esp+C+28],#100 // nTossHeightWeight
+mov [esp+C+2C],#0  // eSkillID
+mov [esp+C+30],#0 // pUserLocal
+mov [esp+C+34],#0 // _nRushDistance
+mov [esp+C+38],#0 // bAirHit
+pop eax
+jmp Return
+
+h1+7: // CMob::GenerateMovePath
+jmp CMob__GenerateMovePath_Hook
+db 90
+Return:
+
+[DISABLE]
+h1+7:
+db 64 A1 00 00 00 00
+
+dealloc(CMob__GenerateMovePath_Hook)

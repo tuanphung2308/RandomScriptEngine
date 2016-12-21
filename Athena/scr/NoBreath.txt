@@ -1,0 +1,7 @@
+[ENABLE]
+00957AF6:
+db 78
+
+[DISABLE]
+00957AF6: //79 ? 89 9E ? ? ? ? E8 ? ? FE FF 83
+db 79

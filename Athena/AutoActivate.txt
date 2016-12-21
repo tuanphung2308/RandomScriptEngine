@@ -1,0 +1,2 @@
+﻿Guard_Mode
+Auto Aggro

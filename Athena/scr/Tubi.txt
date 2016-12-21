@@ -1,0 +1,44 @@
+//v179.1
+//Instant Drop created by ngnam87(thanks NORBIN)
+define(Instant_Drop1,00B5ABF4)//DC ? ? ? ? ? 83 C4 ? E9 ? ? ? ? DD
+define(Instant_Drop2,00B5AC02)//fld below
+define(RLA,008AE349)//81 ? ? ? 00 00 0F 8D ? ? 00 00 85 ? 0F 84 [1st result]
+define(TUB,01E7B5D0)//FUNCTION START (mov eax,[esp+04]): 8D 8E ? ? 00 00 E8 ? ? ? ? E8 ? ? ? ? 50
+
+[Enable]
+alloc(Tubi,64)
+label(Ret)
+
+Instant_Drop1:
+fmul qword ptr [029FF148]
+
+Instant_Drop2:
+fld qword ptr [029FF148]
+
+Tubi:
+mov eax, 0
+push esi
+jmp Ret
+
+TUB:
+jmp Tubi
+Ret:
+
+RLA: // Remove loot animation
+db 81 FE 00 00 00 00
+
+[Disable]
+Instant_Drop1:
+fmul qword ptr [0251A220]
+
+Instant_Drop2:
+fld qword ptr [0251A220]
+
+TUB:
+mov eax,[esp+04]
+push esi
+
+RLA:
+db 81 FE BC 02 00 00
+
+dealloc(Tubi)

@@ -1,0 +1,90 @@
+//v179.1
+//does some registry shit which we prolly dont want
+define(CSystemInfo_Init, 01FB4850) //81 ? ? ? ? ? 33 ? ? 89 ? ? ? ? 89 ? ? ? 89
+
+//(scroll down to where it pushes the string format specifier and hook the 10th push above)
+//or just scan for the hook point directly: ? C1 ? ? 0F ? ? ? 0F ? ? ? ? ? ? ? C1 ? ? 0F
+define(CLogin_GetLocalMacAddressWithHDDSerialNo, 00F03D0E) //6A ? 68 ? ? ? ? 64 ? ? ? ? ? ? ? ? ? ? ? E8 ? ? ? ? ? ? ? ? ? ? ? 89 ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? 33 ? ? 8D ? ? ? ? ? ? 64 ? ? ? ? ? 8B ? ? ? ? ? ? 89 ? ? ? ? ? C6
+//KERNELBASE.GetVolumeInformationA, push below
+
+// (thanks Taku)
+define(CSystemInfo_GetMachineId_Call, 01FB4B20)// 8D 41 14 C3 (3rd)
+
+[Enable]
+alloc(macformathook, 512)
+globalalloc(initrandomhwid, 128)
+label(inithwidloop)
+alloc(randomhwid, 512)
+registersymbol(randomhwid)
+CreateThread(initrandomhwid)
+
+CSystemInfo_Init:
+db C3 90 90 90 90 90
+
+CLogin_GetLocalMacAddressWithHDDSerialNo:
+jmp macformathook
+db 90 90
+
+CSystemInfo_GetMachineId_Call:
+lea eax, [randomhwid]
+ret
+
+macformathook:
+// push 10 random bytes
+lea ecx, [randomhwid]
+movzx eax, byte ptr [ecx]
+push eax
+movzx eax, byte ptr [ecx+1]
+push eax
+movzx eax, byte ptr [ecx+2]
+push eax
+movzx eax, byte ptr [ecx+3]
+push eax
+movzx eax, byte ptr [ecx+4]
+push eax
+movzx eax, byte ptr [ecx+5]
+push eax
+movzx eax, byte ptr [ecx+6]
+push eax
+movzx eax, byte ptr [ecx+7]
+push eax
+movzx eax, byte ptr [ecx+8]
+push eax
+movzx eax, byte ptr [ecx+9]
+push eax
+
+jmp 00F03D5C // lea ecx,[esp+40] above the string format specifier push
+
+initrandomhwid:
+// init random seed
+call GetTickCount
+push eax
+call srand
+add esp, 4 // srand is cdecl so we need to clean the stack
+
+// fill randomhwid with random bytes
+mov ebx, 0
+inithwidloop:
+call rand
+and eax, 000000FF // only grab last byte of the random value
+lea edx, [randomhwid]
+add edx, ebx
+mov byte ptr [edx], al
+inc ebx
+cmp ebx, #512
+jbe inithwidloop
+ret
+
+[Disable]
+CSystemInfo_Init:
+db 81 EC B8 09 00 00
+
+CLogin_GetLocalMacAddressWithHDDSerialNo:
+db 51 C1 EA 10 0F B6 CA
+
+CSystemInfo_GetMachineId_Call:
+db 8D 41 14 C3 90 90 90
+
+dealloc(macformathook)
+dealloc(randomhwid)
+unregistersymbol(randomhwid)
