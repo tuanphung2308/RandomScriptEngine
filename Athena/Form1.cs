@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Athena
 {
-	public partial class Form1 : Form
+    public partial class Form1 : Form
     {
         private CheatEngineLibrary lib;
 
@@ -40,16 +40,16 @@ namespace Athena
 
         // Token: 0x0600005D RID: 93 RVA: 0x00002480 File Offset: 0x00000680
         public Form1()
-		{
+        {
             this.lib = new CheatEngineLibrary();
             this.lib.loadEngine();
             this.InitializeComponent();
             initHack();
         }
 
-		// Token: 0x0600005E RID: 94 RVA: 0x00002630 File Offset: 0x00000830
-		private void Form1_Load(object sender, EventArgs e)
-        { 
+        // Token: 0x0600005E RID: 94 RVA: 0x00002630 File Offset: 0x00000830
+        private void Form1_Load(object sender, EventArgs e)
+        {
         }
 
         private void initHack()
@@ -96,8 +96,8 @@ namespace Athena
                     {
                         TextBox textbox = new TextBox();
                         textbox.Top = this.yValue - 3;
-                        textbox.Left = checkBox.Left + checkBox.Width + j * 60;
-                        textbox.Width = 50;
+                        textbox.Left = checkBox.Left + checkBox.Width + j * 80;
+                        textbox.Width = 70;
                         textbox.Name = "parameter" + j;
                         textbox.AutoSize = true;
                         additionalControl.Add(textbox);
@@ -105,11 +105,11 @@ namespace Athena
                     }
                     aHack.setAdditionalTbx(additionalControl); //Set additional control                      
                 }
-                
+
                 //Move down
                 if (counter % 2 == 1) yValue += 20;
                 counter++;
-               
+
                 this.HackList.Add(aHack);
             }
         }
@@ -132,27 +132,36 @@ namespace Athena
                     {
                         if (current.getCheckBox() != null && current.getCheckBox().GetHashCode() == sender.GetHashCode())
                         {
-                            int tbxCounter = 1;
-                            string executeScript = current.getScript();
-                            foreach (TextBox para in current.getAdditionalTbx())
+                            if (current.getCheckBox().Checked == true)
                             {
-                                if (para.Text.Equals(""))
+                                int tbxCounter = 1;
+                                string executeScript = current.getScript();
+                                foreach (TextBox para in current.getAdditionalTbx())
                                 {
-                                    MessageBox.Show("Dont leave any field empty ;)");
-                                    current.getCheckBox().Checked = false;
-                                    break;
+                                    if (para.Text.Equals(""))
+                                    {
+                                        MessageBox.Show("Dont leave any field empty ;)");
+                                        current.getCheckBox().Checked = false;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        executeScript = executeScript.Replace("Parameter" + tbxCounter, para.Text);
+                                        tbxCounter++;
+                                    }
                                 }
-                                else
-                                {                                   
-                                    executeScript = current.getScript().Replace("Parameter" + tbxCounter, para.Text);
-                                    tbxCounter++;
-                                }
+
+                                this.lib.iAddScript(current.getName(), executeScript);
+                                current.setCounter(hackCounter);
+                                hackCounter++;
+                                this.lib.iActivateRecord(current.getCounter(), true);
+                                break;
                             }
-                            this.lib.iAddScript(current.getName(), executeScript);
-                            current.setCounter(hackCounter);
-                            hackCounter++;
-                            this.lib.iActivateRecord(current.getCounter(), current.getCheckBox().Checked);
-                            break;
+                            else
+                            {
+                                MessageBox.Show("toggling off");
+                                this.lib.iActivateRecord(current.getCounter(), false);
+                            }
                         }
                     }
                 }
@@ -185,7 +194,7 @@ namespace Athena
             if (!text.Equals(""))
             {
                 this.lib.iOpenProcess(text);
-                this.Text =  this.ProcessSelect.Text + " - " + this.Text;
+                this.Text = this.ProcessSelect.Text + " - " + this.Text;
                 //add to CElibscript
                 foreach (Hack current in HackList)
                 {
@@ -194,7 +203,8 @@ namespace Athena
                         this.lib.iAddScript(current.getName(), current.getScript());
                         current.setCounter(hackCounter);
                         hackCounter++;
-                    } else
+                    }
+                    else
                     {
                         //Ok fine
                         //MessageBox.Show(current.getName());
@@ -204,7 +214,7 @@ namespace Athena
             //LoadPreSavedHack();
         }
 
-        private void LoadPreSavedHack ()
+        private void LoadPreSavedHack()
         {
             int lineCounter = 0;
             string line;
@@ -270,7 +280,7 @@ namespace Athena
                 {
                     this.itemFilterScript = this.itemFilterScript.Replace("[Replace Mode]", "dd #0");
                 }
-                
+
                 /*************************************************************************
                  * PARSE ITEM LIST TEXT BOX***********************************************
                  ************************************************************************/
@@ -312,7 +322,8 @@ namespace Athena
 
         private void offFilterBtn_Click(object sender, EventArgs e)
         {
-            if (enFilterBtn.BackColor.Equals(Color.Green)) {
+            if (enFilterBtn.BackColor.Equals(Color.Green))
+            {
                 this.lib.iActivateRecord(this.itemScriptCounter, false);
                 enFilterBtn.BackColor = Color.Red;
                 enFilterBtn.Text = "Enable";
