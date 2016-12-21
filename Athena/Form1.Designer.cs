@@ -36,7 +36,7 @@
             this.ProcessSelect.FormattingEnabled = true;
             this.ProcessSelect.Location = new System.Drawing.Point(12, 589);
             this.ProcessSelect.Name = "ProcessSelect";
-            this.ProcessSelect.Size = new System.Drawing.Size(375, 21);
+            this.ProcessSelect.Size = new System.Drawing.Size(542, 21);
             this.ProcessSelect.TabIndex = 15;
             this.ProcessSelect.Text = "Please Select A Process";
             this.ProcessSelect.DropDown += new System.EventHandler(this.ProcessSelect_DropDown);
@@ -49,7 +49,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(403, 582);
+            this.tabControl1.Size = new System.Drawing.Size(555, 582);
             this.tabControl1.TabIndex = 16;
             // 
             // tabPage1
@@ -58,7 +58,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(395, 556);
+            this.tabPage1.Size = new System.Drawing.Size(547, 556);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scripts";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // 
             this.scrPanel.Location = new System.Drawing.Point(1, 0);
             this.scrPanel.Name = "scrPanel";
-            this.scrPanel.Size = new System.Drawing.Size(394, 556);
+            this.scrPanel.Size = new System.Drawing.Size(550, 556);
             this.scrPanel.TabIndex = 15;
             // 
             // tabPage2
@@ -80,7 +80,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(395, 556);
+            this.tabPage2.Size = new System.Drawing.Size(547, 556);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Item filter";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // rejectRadio
             // 
             this.rejectRadio.AutoSize = true;
-            this.rejectRadio.Location = new System.Drawing.Point(201, 22);
+            this.rejectRadio.Location = new System.Drawing.Point(299, 22);
             this.rejectRadio.Name = "rejectRadio";
             this.rejectRadio.Size = new System.Drawing.Size(56, 17);
             this.rejectRadio.TabIndex = 6;
@@ -100,7 +100,7 @@
             // acceptRadio
             // 
             this.acceptRadio.AutoSize = true;
-            this.acceptRadio.Location = new System.Drawing.Point(110, 22);
+            this.acceptRadio.Location = new System.Drawing.Point(198, 22);
             this.acceptRadio.Name = "acceptRadio";
             this.acceptRadio.Size = new System.Drawing.Size(59, 17);
             this.acceptRadio.TabIndex = 5;
@@ -111,9 +111,9 @@
             // 
             // offFilterBtn
             // 
-            this.offFilterBtn.Location = new System.Drawing.Point(201, 530);
+            this.offFilterBtn.Location = new System.Drawing.Point(299, 530);
             this.offFilterBtn.Name = "offFilterBtn";
-            this.offFilterBtn.Size = new System.Drawing.Size(188, 23);
+            this.offFilterBtn.Size = new System.Drawing.Size(242, 23);
             this.offFilterBtn.TabIndex = 2;
             this.offFilterBtn.Text = "Deactivate";
             this.offFilterBtn.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             // 
             this.enFilterBtn.Location = new System.Drawing.Point(9, 530);
             this.enFilterBtn.Name = "enFilterBtn";
-            this.enFilterBtn.Size = new System.Drawing.Size(188, 23);
+            this.enFilterBtn.Size = new System.Drawing.Size(248, 23);
             this.enFilterBtn.TabIndex = 1;
             this.enFilterBtn.Text = "Activate";
             this.enFilterBtn.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             this.itemListTbx.Location = new System.Drawing.Point(9, 45);
             this.itemListTbx.Multiline = true;
             this.itemListTbx.Name = "itemListTbx";
-            this.itemListTbx.Size = new System.Drawing.Size(380, 479);
+            this.itemListTbx.Size = new System.Drawing.Size(532, 479);
             this.itemListTbx.TabIndex = 0;
             // 
             // Form1
@@ -143,11 +143,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(399, 622);
+            this.ClientSize = new System.Drawing.Size(566, 622);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ProcessSelect);
-            this.MaximumSize = new System.Drawing.Size(415, 661);
-            this.MinimumSize = new System.Drawing.Size(415, 661);
             this.Name = "Form1";
             this.Text = "Athena Trainer";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -11,7 +11,7 @@ define(h7,01D24278)//first je from h5, address of je jump to
 alloc(skill_id_hook,128)
 label(skill_id_return)
 alloc(delay,4)
-define(skill_id, #142120030) //Skill ID goes here
+define(skill_id, #Parameter1) //Skill ID goes here
 
 
 /*
@@ -54,7 +54,7 @@ skill_id_return:
 
 skill_id_hook:
 inc [delay]
-cmp dword ptr [delay], 2 // Set your delay (optional till you don't d/c)
+cmp dword ptr [delay], Parameter2 // Set your delay (optional till you don't d/c)
 jne skill_id_return
 mov [delay], 0
 mov edx,skill_id

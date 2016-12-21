@@ -19,6 +19,7 @@ namespace Athena
 
         //counter for script
         private int counter = 0;
+        private int hackCounter = 0;
 
         private int itemScriptCounter = 0;
         private string itemFilterScript;
@@ -61,19 +62,14 @@ namespace Athena
                 //this.GuardMode = new Athena.Hack("GuardMode", "GuardMode", counter++);
 
                 CheckBox checkBox = new CheckBox();
-                checkBox.Top += this.yValue;
-                if (counter % 2 == 1) yValue += 20;
+                checkBox.Top = this.yValue;
                 //MessageBox.Show(Convert.ToString(checkBox.Top));
+
 
                 checkBox.Left = this.xValue + this.Width * (counter % 2) / 2;
                 checkBox.Name = fileName;
                 checkBox.Text = fileName;
                 checkBox.AutoSize = true;
-
-                //push to HackList
-                string script = loadCheatFromTXT("scr\\" + fileName + ".txt");
-                Hack aHack = new Hack(fileName, script, counter++, checkBox);
-                this.HackList.Add(aHack);
 
                 //add Event
                 checkBox.Click += new EventHandler(this.tickHack);
@@ -84,6 +80,37 @@ namespace Athena
 
                 //finally display it by adding to control
                 this.scrPanel.Controls.Add(checkBox);
+
+                //push to HackList
+                string script = loadCheatFromTXT("scr\\" + fileName + ".txt");
+
+                //declare new hack
+                Hack aHack = new Hack(fileName, script, checkBox);
+                int NoParameters = (new Regex("Parameter")).Matches(script).Count;
+
+                //script has parameter(s)
+                List<TextBox> additionalControl = new List<TextBox>();
+                if (NoParameters > 0)
+                {
+                    for (int j = 0; j < NoParameters; j++)
+                    {
+                        TextBox textbox = new TextBox();
+                        textbox.Top = this.yValue - 3;
+                        textbox.Left = checkBox.Left + checkBox.Width + j * 60;
+                        textbox.Width = 50;
+                        textbox.Name = "parameter" + j;
+                        textbox.AutoSize = true;
+                        additionalControl.Add(textbox);
+                        this.scrPanel.Controls.Add(textbox);
+                    }
+                    aHack.setAdditionalTbx(additionalControl); //Set additional control                      
+                }
+                
+                //Move down
+                if (counter % 2 == 1) yValue += 20;
+                counter++;
+               
+                this.HackList.Add(aHack);
             }
         }
 
@@ -93,10 +120,40 @@ namespace Athena
             {
                 foreach (Hack current in this.HackList)
                 {
-                    if (current.getCheckBox() != null && current.getCheckBox().GetHashCode() == sender.GetHashCode())
+                    if (current.getAdditionalTbx() == null)
                     {
-                        this.lib.iActivateRecord(current.getCounter(), current.getCheckBox().Checked);
-                        break;
+                        if (current.getCheckBox() != null && current.getCheckBox().GetHashCode() == sender.GetHashCode())
+                        {
+                            this.lib.iActivateRecord(current.getCounter(), current.getCheckBox().Checked);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (current.getCheckBox() != null && current.getCheckBox().GetHashCode() == sender.GetHashCode())
+                        {
+                            int tbxCounter = 1;
+                            string executeScript = current.getScript();
+                            foreach (TextBox para in current.getAdditionalTbx())
+                            {
+                                if (para.Text.Equals(""))
+                                {
+                                    MessageBox.Show("Dont leave any field empty ;)");
+                                    current.getCheckBox().Checked = false;
+                                    break;
+                                }
+                                else
+                                {                                   
+                                    executeScript = current.getScript().Replace("Parameter" + tbxCounter, para.Text);
+                                    tbxCounter++;
+                                }
+                            }
+                            this.lib.iAddScript(current.getName(), executeScript);
+                            current.setCounter(hackCounter);
+                            hackCounter++;
+                            this.lib.iActivateRecord(current.getCounter(), current.getCheckBox().Checked);
+                            break;
+                        }
                     }
                 }
             }
@@ -132,10 +189,19 @@ namespace Athena
                 //add to CElibscript
                 foreach (Hack current in HackList)
                 {
-                    this.lib.iAddScript(current.getName(), current.getScript());
+                    if (current.getAdditionalTbx() == null)
+                    {
+                        this.lib.iAddScript(current.getName(), current.getScript());
+                        current.setCounter(hackCounter);
+                        hackCounter++;
+                    } else
+                    {
+                        //Ok fine
+                        //MessageBox.Show(current.getName());
+                    }
                 }
             }
-            LoadPreSavedHack();
+            //LoadPreSavedHack();
         }
 
         private void LoadPreSavedHack ()
