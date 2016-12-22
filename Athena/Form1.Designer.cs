@@ -148,6 +148,7 @@
             this.loadSave.TabIndex = 16;
             this.loadSave.Text = "LOAD FROM SAVED FILE";
             this.loadSave.UseVisualStyleBackColor = true;
+            this.loadSave.Enabled = false;
             this.loadSave.Click += new System.EventHandler(this.loadSave_Click);
             // 
             // Form1

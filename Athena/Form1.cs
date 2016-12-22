@@ -238,6 +238,7 @@ namespace Athena
                         //MessageBox.Show(current.getName());
                     }
                 }
+                this.loadSave.Enabled = true;
             }
         }
 
