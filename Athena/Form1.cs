@@ -187,6 +187,34 @@ namespace Athena
             }
         }
 
+        private void activateHackByName(string[] parameters, string name)
+        {
+            foreach (Hack current in this.HackList)
+            {
+                if (current.getName().Equals(name))
+                {
+                    if (current.getCheckBox().Checked == false)
+                    {
+                        int tbxCounter = 1;
+                        string executeScript = current.getScript();
+                        foreach (TextBox para in current.getAdditionalTbx())
+                        {
+                            para.Text = parameters[tbxCounter - 1].ToString();
+                            executeScript = executeScript.Replace("Parameter" + tbxCounter, para.Text);
+                            tbxCounter++;
+                        }
+
+                        this.lib.iAddScript(current.getName(), executeScript);
+                        current.setCounter(hackCounter);
+                        hackCounter++;
+                        current.getCheckBox().Checked = true;
+                        this.lib.iActivateRecord(current.getCounter(), true);
+                        break;
+                    }
+                }
+            }
+        }
+
         private void ProcessSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             string text = this.ProcessSelect.SelectedItem.ToString();
@@ -194,7 +222,7 @@ namespace Athena
             if (!text.Equals(""))
             {
                 this.lib.iOpenProcess(text);
-                this.Text = this.ProcessSelect.Text + " - " + this.Text;
+                this.Text = this.ProcessSelect.Text + " - Athena Trainer";
                 //add to CElibscript
                 foreach (Hack current in HackList)
                 {
@@ -211,7 +239,6 @@ namespace Athena
                     }
                 }
             }
-            //LoadPreSavedHack();
         }
 
         private void LoadPreSavedHack()
@@ -223,7 +250,17 @@ namespace Athena
             StreamReader file = new StreamReader("AutoActivate.txt");
             while ((line = file.ReadLine()) != null)
             {
-                activateHackByName(line);
+                if (!line.Contains(":"))
+                {
+                    activateHackByName(line);
+                }
+                else
+                {
+                    string hackName = line.Substring(0, line.IndexOf(":"));
+                    string substr = line.Substring(line.IndexOf(":") + 2, line.Length - line.IndexOf(":") - 2);
+                    string[] parameters = substr.Split(' ');
+                    activateHackByName(parameters, hackName);
+                }
                 lineCounter++;
             }
             file.Close();
@@ -237,7 +274,6 @@ namespace Athena
             // Read the file and display it line by line.
             itemList = loadCheatFromTXT("itemFilter\\List.txt");
             itemListTbx.Text = itemList;
-
         }
 
         private void ProcessSelect_DropDown(object sender, EventArgs e)
@@ -333,6 +369,11 @@ namespace Athena
             {
                 MessageBox.Show("wtf dude?");
             }
+        }
+
+        private void loadSave_Click(object sender, EventArgs e)
+        {
+            LoadPreSavedHack();
         }
     }
 }

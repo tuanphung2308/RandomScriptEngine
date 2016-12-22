@@ -27,6 +27,7 @@
             this.offFilterBtn = new System.Windows.Forms.Button();
             this.enFilterBtn = new System.Windows.Forms.Button();
             this.itemListTbx = new System.Windows.Forms.TextBox();
+            this.loadSave = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.loadSave);
             this.tabPage1.Controls.Add(this.scrPanel);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -68,7 +70,7 @@
             // 
             this.scrPanel.Location = new System.Drawing.Point(1, 0);
             this.scrPanel.Name = "scrPanel";
-            this.scrPanel.Size = new System.Drawing.Size(561, 556);
+            this.scrPanel.Size = new System.Drawing.Size(547, 519);
             this.scrPanel.TabIndex = 15;
             // 
             // tabPage2
@@ -138,6 +140,16 @@
             this.itemListTbx.Size = new System.Drawing.Size(532, 479);
             this.itemListTbx.TabIndex = 0;
             // 
+            // loadSave
+            // 
+            this.loadSave.Location = new System.Drawing.Point(10, 527);
+            this.loadSave.Name = "loadSave";
+            this.loadSave.Size = new System.Drawing.Size(529, 23);
+            this.loadSave.TabIndex = 16;
+            this.loadSave.Text = "LOAD FROM SAVED FILE";
+            this.loadSave.UseVisualStyleBackColor = true;
+            this.loadSave.Click += new System.EventHandler(this.loadSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.TextBox itemListTbx;
         private System.Windows.Forms.RadioButton acceptRadio;
         private System.Windows.Forms.RadioButton rejectRadio;
+        private System.Windows.Forms.Button loadSave;
     }
 }
