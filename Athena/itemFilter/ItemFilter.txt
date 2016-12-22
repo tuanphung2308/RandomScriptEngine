@@ -17,11 +17,9 @@ dd #500 // Minimum meso
 
 Mode:
 [Replace Mode]
-//dd #1 // 0 = Accept, 1 = reject
 
 ItemList:
 [Replace Item]
-//[Parameter1]
 
 dd 00 // End of list
 

@@ -274,7 +274,6 @@ namespace Athena
 
             this.itemFilterScript = loadCheatFromTXT("itemFilter\\itemFilter.txt");
 
-            counter = 0;
             string itemList = "";
 
             // Read the file and display it line by line.
@@ -346,14 +345,13 @@ namespace Athena
 
                 this.lib.iAddScript("IF", itemFilterScript);
 
-                if (this.itemScriptCounter == 0)
-                {
-                    this.itemScriptCounter = counter;
-                    counter++;
-                }
+                this.itemScriptCounter = counter;
+                counter++;
+
                 enFilterBtn.BackColor = Color.Green;
                 enFilterBtn.Text = "Enabled";
                 enFilterBtn.Enabled = false;
+                MessageBox.Show("Activate hack at: " + this.itemScriptCounter);
                 this.lib.iActivateRecord(this.itemScriptCounter, true);
             }
             else
