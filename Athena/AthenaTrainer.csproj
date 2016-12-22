@@ -50,8 +50,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon_folder___himouto_umaru_chan__1__by_alex_064-d95rliy %281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
@@ -93,6 +92,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Content Include="icon.ico" />
+    <Content Include="icon_folder___himouto_umaru_chan__1__by_alex_064-d95rliy %281%29.ico" />
     <Content Include="itemFilter\ItemFilter.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

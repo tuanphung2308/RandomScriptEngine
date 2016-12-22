@@ -165,7 +165,7 @@ namespace Athena
                             }
                             else
                             {
-                                MessageBox.Show("toggling off");
+                                //MessageBox.Show("toggling off");
                                 this.lib.iActivateRecord(current.getCounter(), false);
                             }
                         }
