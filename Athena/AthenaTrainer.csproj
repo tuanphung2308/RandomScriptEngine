@@ -99,6 +99,7 @@
     <Content Include="itemFilter\List.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Image1.png" />
     <Content Include="scr\Guard_Mode.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

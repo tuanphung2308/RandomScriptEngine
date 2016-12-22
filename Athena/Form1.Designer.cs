@@ -1,4 +1,6 @@
-﻿namespace Athena
+﻿using System.Drawing;
+
+namespace Athena
 {
 	// Token: 0x0200001F RID: 31
 	public partial class Form1 : global::System.Windows.Forms.Form
@@ -20,6 +22,7 @@
             this.ProcessSelect = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.loadSave = new System.Windows.Forms.Button();
             this.scrPanel = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rejectRadio = new System.Windows.Forms.RadioButton();
@@ -27,7 +30,6 @@
             this.offFilterBtn = new System.Windows.Forms.Button();
             this.enFilterBtn = new System.Windows.Forms.Button();
             this.itemListTbx = new System.Windows.Forms.TextBox();
-            this.loadSave = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -48,26 +50,42 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(-1, 1);
+            this.tabControl1.Location = new System.Drawing.Point(-2, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(0, 0);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(559, 582);
+            this.tabControl1.Size = new System.Drawing.Size(559, 583);
             this.tabControl1.TabIndex = 16;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tabPage1.BackgroundImage = global::Athena.Properties.Resources.Image1;
             this.tabPage1.Controls.Add(this.loadSave);
             this.tabPage1.Controls.Add(this.scrPanel);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(551, 556);
+            this.tabPage1.Size = new System.Drawing.Size(551, 557);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Scripts";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // loadSave
+            // 
+            this.loadSave.Enabled = false;
+            this.loadSave.Location = new System.Drawing.Point(10, 527);
+            this.loadSave.Name = "loadSave";
+            this.loadSave.Size = new System.Drawing.Size(529, 23);
+            this.loadSave.TabIndex = 16;
+            this.loadSave.Text = "LOAD FROM SAVED FILE";
+            this.loadSave.UseVisualStyleBackColor = true;
+            this.loadSave.Click += new System.EventHandler(this.loadSave_Click);
             // 
             // scrPanel
             // 
+            this.scrPanel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.scrPanel.BackgroundImage = global::Athena.Properties.Resources.Image1;
             this.scrPanel.Location = new System.Drawing.Point(1, 0);
             this.scrPanel.Name = "scrPanel";
             this.scrPanel.Size = new System.Drawing.Size(547, 519);
@@ -75,41 +93,44 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.BackgroundImage = global::Athena.Properties.Resources.Image1;
             this.tabPage2.Controls.Add(this.rejectRadio);
             this.tabPage2.Controls.Add(this.acceptRadio);
             this.tabPage2.Controls.Add(this.offFilterBtn);
             this.tabPage2.Controls.Add(this.enFilterBtn);
             this.tabPage2.Controls.Add(this.itemListTbx);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(551, 556);
+            this.tabPage2.Size = new System.Drawing.Size(551, 557);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Item filter";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // rejectRadio
             // 
             this.rejectRadio.AutoSize = true;
-            this.rejectRadio.Location = new System.Drawing.Point(299, 22);
+            this.rejectRadio.BackColor = System.Drawing.Color.Transparent;
+            this.rejectRadio.Location = new System.Drawing.Point(296, 19);
             this.rejectRadio.Name = "rejectRadio";
             this.rejectRadio.Size = new System.Drawing.Size(56, 17);
             this.rejectRadio.TabIndex = 6;
             this.rejectRadio.TabStop = true;
             this.rejectRadio.Text = "Reject";
-            this.rejectRadio.UseVisualStyleBackColor = true;
+            this.rejectRadio.UseVisualStyleBackColor = false;
             this.rejectRadio.Click += new System.EventHandler(this.rejectRadio_CheckedChanged);
             // 
             // acceptRadio
             // 
             this.acceptRadio.AutoSize = true;
-            this.acceptRadio.Location = new System.Drawing.Point(198, 22);
+            this.acceptRadio.BackColor = System.Drawing.Color.Transparent;
+            this.acceptRadio.Location = new System.Drawing.Point(195, 19);
             this.acceptRadio.Name = "acceptRadio";
             this.acceptRadio.Size = new System.Drawing.Size(59, 17);
             this.acceptRadio.TabIndex = 5;
             this.acceptRadio.TabStop = true;
             this.acceptRadio.Text = "Accept";
-            this.acceptRadio.UseVisualStyleBackColor = true;
+            this.acceptRadio.UseVisualStyleBackColor = false;
             this.acceptRadio.Click += new System.EventHandler(this.acceptRadio_CheckedChanged);
             // 
             // offFilterBtn
@@ -140,22 +161,13 @@
             this.itemListTbx.Size = new System.Drawing.Size(532, 479);
             this.itemListTbx.TabIndex = 0;
             // 
-            // loadSave
-            // 
-            this.loadSave.Location = new System.Drawing.Point(10, 527);
-            this.loadSave.Name = "loadSave";
-            this.loadSave.Size = new System.Drawing.Size(529, 23);
-            this.loadSave.TabIndex = 16;
-            this.loadSave.Text = "LOAD FROM SAVED FILE";
-            this.loadSave.UseVisualStyleBackColor = true;
-            this.loadSave.Enabled = false;
-            this.loadSave.Click += new System.EventHandler(this.loadSave_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(554, 622);
             this.Controls.Add(this.tabControl1);

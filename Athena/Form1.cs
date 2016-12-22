@@ -43,6 +43,12 @@ namespace Athena
         {
             this.lib = new CheatEngineLibrary();
             this.lib.loadEngine();
+
+            //disable resize
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
             this.InitializeComponent();
             initHack();
         }
@@ -96,7 +102,7 @@ namespace Athena
                     {
                         TextBox textbox = new TextBox();
                         textbox.Top = this.yValue - 3;
-                        textbox.Left = checkBox.Left + checkBox.Width + j * 80;
+                        textbox.Left = checkBox.Left + checkBox.Width + 10 + j * 80;
                         textbox.Width = 70;
                         textbox.Name = "parameter" + j;
                         textbox.AutoSize = true;
@@ -265,7 +271,6 @@ namespace Athena
                 lineCounter++;
             }
             file.Close();
-            //MessageBox.Show(text);
 
             this.itemFilterScript = loadCheatFromTXT("itemFilter\\itemFilter.txt");
 
